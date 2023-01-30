@@ -52,7 +52,7 @@ def run():
             st.json(loc_dict)
             data = [[latitude,longitude]]
             df = pd.DataFrame(data, columns=['lat', 'lon'])
-            st.subheader('✅ prediction +' on the Map'+'🗺️')
+            st.subheader('✅ '+prediction +' on the Map'+'🗺️')
             st.map(df)
         except Exception as e:
             st.warning("Sorry No address found!!")
