@@ -21,7 +21,7 @@ def image_processing(image):
     img = PIL.Image.open(image)
     img = img.resize(img_shape)
     img1 = img
-    img = np.array(img) / 255.0
+    img = np.array
     img = img[np.newaxis]
     result = classifier.predict(img)
     return labels[np.argmax(result)],img1
@@ -43,17 +43,17 @@ def run():
             f.write(img_file.getbuffer())
         prediction,image = image_processing(save_image_path)
         st.image(image)
-        st.header("📍 **Predicted Landmark is: " + prediction + '**')
+        st.header("Predicted Landmark is: " + prediction)
         try:
             address, latitude, longitude = get_map(prediction)
             st.success('Address: '+address )
             loc_dict = {'Latitude':latitude,'Longitude':longitude}
-            st.subheader('✅ **Latitude & Longitude of '+prediction+'**')
+            st.subheader('Latitude & Longitude of '+prediction)
             st.json(loc_dict)
             data = [[latitude,longitude]]
             df = pd.DataFrame(data, columns=['lat', 'lon'])
-            st.subheader('✅ **'+prediction +' on the Map**'+'🗺️')
+            st.subheader('✅ prediction +' on the Map'+'🗺️')
             st.map(df)
         except Exception as e:
-            st.warning("No address found!!")
+            st.warning("Sorry No address found!!")
 run()
